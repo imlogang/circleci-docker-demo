@@ -1,0 +1,19 @@
+version: 2.1
+jobs:
+  docker_build:
+    docker:
+      - image: cimg/base:2022.09
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run:
+          name: build image with docker
+          command: |
+            docker build -t test1
+
+
+workflows:
+  build:
+    jobs:
+      - docker_build
