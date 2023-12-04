@@ -10,7 +10,7 @@ jobs:
       - run:
           name: build image with docker
           command: |
-            docker build -t test1
+            docker build -t test1 .
 
 
 workflows:
