@@ -1,4 +1,11 @@
 version: 2.1
+
+commands:
+  debugit:
+    steps:
+      - run: docker image ls
+      - run: docker buildx ls
+
 jobs:
   docker_build:
     docker:
@@ -7,11 +14,16 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
+      - debugit
       - run:
           name: build image with docker
           command: |
             docker build -t test1 .
-
+      - debugit
+      - run: docker buildx build --platform linux/amd64 -t test1-amd64 .
+      - debugit
+      - run: docker buildx build --platform linux/arm64 -t test1-arm64 .
+      - debugit
 
 workflows:
   build:
