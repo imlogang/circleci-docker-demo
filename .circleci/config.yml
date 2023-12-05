@@ -15,10 +15,10 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - debugit
-      - run:
-          name: build image with docker
-          command: |
-            docker build -t test1 .
+      # - run:
+      #     name: build image with docker
+      #     command: |
+      #       docker build -t test1 .
       - run:
           name: install arm build support into remote-docker instance
           command: |
