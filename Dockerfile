@@ -1,6 +1,6 @@
 FROM httpd
 
-COPY ./test.txt /usr/local/apache2/htdocs/test.txt
+COPY ./README.md /usr/local/apache2/htdocs/README.md
 
 RUN uname -m
 
