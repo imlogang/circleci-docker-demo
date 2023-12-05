@@ -19,6 +19,10 @@ jobs:
           name: build image with docker
           command: |
             docker build -t test1 .
+      - run:
+          name: install arm build support into remote-docker instance
+          command: |
+            ssh remote-docker "sudo apt-get update; sudo apt-get install -y qemu-user-static binfmt-support; qemu-aarch64-static --version"
       - debugit
       - run: docker buildx build --platform linux/amd64 -t test1-amd64 .
       - debugit
